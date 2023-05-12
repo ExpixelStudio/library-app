@@ -13,8 +13,32 @@
 
     <div id="book-shelf">
 
-        <!-- <button class="addBook">Add New Book</button> -->
+        <div class="book"></div>
+    
+    </div>
 
+    <dialog class="modal" id="form-modal" >
+        <form id="new-book-form" action="" method="dialog">
+            <label for="title">Book Title:</label>
+            <input type="text" id="title">
+
+            <label for="author">Author:</label>
+            <input type="text" id="author">
+
+            <label for="pages">No. of Pages:</label>
+            <input type="text" name="" id="pages">
+
+            <label for="read">Read?:</label>
+            <input type="checkbox" id="read">
+
+            <input type="submit" value="add_book">;
+        </form>
+
+        <button class="close-btn">Close</button>
+    </dialog>
+
+    <div id="new-btn" class="new-btn">
+        <button class="new">New Book</button>
     </div>
 
 

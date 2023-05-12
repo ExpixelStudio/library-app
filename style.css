@@ -1,20 +1,33 @@
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    /* margin: 0;
+    padding: 0; */
 }
 
-body {}
+body{
+ 
+}
 
 #book-shelf {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 305px);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 20%));
+    gap: 40px;
+    justify-content: center;
+
 }
 
 #book-shelf .book {
     display: grid;
-    /* grid-template-columns: repeat(auto-fit, 250px); */
     border: 1px solid darkcyan;
     height: 350px;
     width: 250px;
+}
+
+#form-modal{
+    
+   /*  position : fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+         */
 }
