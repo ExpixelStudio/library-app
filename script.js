@@ -25,7 +25,7 @@ modal.addEventListener("click", e => {
     ) {
       modal.close()
     }
-  })
+  });
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -41,6 +41,12 @@ function Book(title, author, pages, read) {
 Book.prototype.printInfo = function () {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
 }
+
+Book.prototype.uid = function (){
+    return `${this.title.substr(0,5)}-${Math.random().toString(36).slice(5)}`;
+}
+
+console.log(Book);
 
 const book1 = new Book("Tower of the end", "Xfiles the Magnative", 627, "unread");
 const book2 = new Book("Rizz Valley", "Sommo", 239, "read");
@@ -74,33 +80,47 @@ function addBookToLibrary() {
 
 }
 
+/* let id = Object.create(Book);
+
+        id.uid = Book.uid();
+        console.log(id.uid); */
 
 
 document.getElementById('new-book-form').addEventListener('submit',function(e){
     e.preventDefault();
     addBookToLibrary();
-    /* renderBooks(); */
-    render();
-    /* alert('hmph'); */
+    renderBooks();
+    /* render(); */
 })
 
 function renderBooks() {
     const bookEl = document.querySelector("#book-shelf");
     bookEl.innerHTML = library.map((book)=>{
+        
         let {title,author,pages,read} = book;
+        let id = Object.create(book);
+
+        id.uid = book.uid();
+        console.log(id.uid);
+
         return `
             <div class="book">
-                <p>${title}</p>
-                <p>${author}</p>
-                <p>${pages}</p>
-                <p>${read}</p>
+                <h3>${title}</h3>
+                <p>By: ${author}</p>
+                <p>No. Of Pages: ${pages}</p>
+                <p>Already Read?: ${read}</p>
+                <p>Summary: ${book.uid()}</p>
             </div>
         `;
     }).join('');
 }
-/* renderBooks(); */
+renderBooks();
 
-function render() {
+function removeBook(index){
+    library.splice(index,1);
+}
+
+/* function render() {
     const libraryEl = document.getElementById('book-shelf');
     
     libraryEl.innerHTML = '';
@@ -112,9 +132,9 @@ function render() {
         libraryEl.appendChild(bookEl);
     }
 
-    /* just another way to do it */
+     //just another way to do it 
     
-}
+} */
 
 
 
