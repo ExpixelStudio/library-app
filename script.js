@@ -43,7 +43,7 @@ Book.prototype.printInfo = function () {
 }
 
 Book.prototype.uid = function (){
-    return `${this.title.substr(0,5)}-${Math.random().toString(36).slice(5)}`;
+    return `${this.title.substr(0,5)}`; /* ${Math.random().toString(36).slice(5)} */
 }
 
 console.log(Book);
@@ -55,9 +55,9 @@ newBookBtn.addEventListener('click', function(e){
     
 });
 
-const library = [];
+let library = [new Book("Tower of the end", "Xfiles the Magnative", 627, "unread") , new Book("Rizz Valley", "Sommo", 239, "read") ];
 
-const newBook = Object.create(Book);
+/* const newBook = Object.create(Book); */
 
 
 function createSlots() {
@@ -98,27 +98,44 @@ function renderBooks() {
     bookEl.innerHTML = library.map((book)=>{
         
         let {title,author,pages,read} = book;
-        let id = Object.create(book);
-
+        /* let id = book.uid(); */
+       /*  let id = Object.create(book);
         id.uid = book.uid();
-        console.log(id.uid);
+        console.log(id.uid); */
 
+        /* console.log(book.uid()); */
         return `
             <div class="book">
                 <h3>${title}</h3>
                 <p>By: ${author}</p>
                 <p>No. Of Pages: ${pages}</p>
                 <p>Already Read?: ${read}</p>
-                <p>Summary: ${book.uid()}</p>
+                <p>ID : ${book.uid()}</p>
+                <button onclick ='deleteBook(${book.uid()});' class='delete'>Delete</button>
             </div>
         `;
     }).join('');
 }
 renderBooks();
 
-function removeBook(index){
-    library.splice(index,1);
+function deleteBook(id){
+    
+    const index = library.findIndex((book) => book.id === id);
+    if (index !== -1) {
+        library.splice(index, 1);
+    }
+    
+    console.log(id);
+     /* renderBooks(); */
+    
+    /* library = library.filter((book) => book.uid() !== id);
+    console.log(id);
+    renderBooks(); */
 }
+
+/* function removeBook(index){
+    library.splice(index,1);
+} */
 
 /* function render() {
     const libraryEl = document.getElementById('book-shelf');
