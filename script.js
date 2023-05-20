@@ -27,24 +27,25 @@ modal.addEventListener("click", e => {
     }
   });
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-
+    
      this.info = function () {
-         return `${title} by ${author}, ${pages} pages, ${read}.`;
+         return `${title} by ${author}, ${pages} pages, ${read}. id ${id}`;
      };
 }
 
 Book.prototype.printInfo = function () {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}. id ${id}`;
 }
 
 Book.prototype.uid = function (){
-    return `${this.title.substr(0,5)}`; /* ${Math.random().toString(36).slice(5)} */
-}
+    let rndId = `${this.title.substr(1,5)}${this.pages}${this.author.substr(0,5)}`;/* ${Math.random().toString(36).slice(5)}`;  */
+    return rndId.replace(/\s/g, '').toLowerCase(); //removes whitespace
+} 
 
 console.log(Book);
 
@@ -55,7 +56,7 @@ newBookBtn.addEventListener('click', function(e){
     
 });
 
-let library = [new Book("Tower of the end", "Xfiles the Magnative", 627, "unread") , new Book("Rizz Valley", "Sommo", 239, "read") ];
+let library = [new Book("Tower At The End", "Xfiles the Magnative", 627, "read") , new Book("Mansion of Mystery", "Xfiles the Magnative", 239, "unread") ];
 
 /* const newBook = Object.create(Book); */
 
@@ -98,20 +99,21 @@ function renderBooks() {
     bookEl.innerHTML = library.map((book)=>{
         
         let {title,author,pages,read} = book;
-        /* let id = book.uid(); */
-       /*  let id = Object.create(book);
-        id.uid = book.uid();
-        console.log(id.uid); */
-
-        /* console.log(book.uid()); */
+        let id = book.uid();
+       
         return `
             <div class="book">
                 <h3>${title}</h3>
                 <p>By: ${author}</p>
                 <p>No. Of Pages: ${pages}</p>
                 <p>Already Read?: ${read}</p>
-                <p>ID : ${book.uid()}</p>
-                <button onclick ='deleteBook(${book.uid()});' class='delete'>Delete</button>
+                <p>ID : ${id}</p>
+                <div class="toogle-read">
+                    <label for="read">Mark as read:</label>
+                    <input type="checkbox" id="read">
+                </div>
+                
+                <button onclick =deleteBook('${id}') 'class='delete'>Delete</button>
             </div>
         `;
     }).join('');
@@ -119,18 +121,10 @@ function renderBooks() {
 renderBooks();
 
 function deleteBook(id){
-    
-    const index = library.findIndex((book) => book.id === id);
-    if (index !== -1) {
-        library.splice(index, 1);
-    }
-    
+     
+    library = library.filter((book) => book.uid() !== id);
     console.log(id);
-     /* renderBooks(); */
-    
-    /* library = library.filter((book) => book.uid() !== id);
-    console.log(id);
-    renderBooks(); */
+    renderBooks();
 }
 
 /* function removeBook(index){

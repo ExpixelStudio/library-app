@@ -4,10 +4,33 @@
     padding: 0; */
 }
 
+body{
+    padding:0px;
+    margin:0px;
+} 
+
+h1{
+    margin : 0;
+}
+
+#header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:12vh;
+    margin-bottom: 5%;
+    background-color: #2a2438;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#header h1{
+    color:white;
+}
+
 #book-shelf {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 20%));
-    gap: 40px;
+    gap: 30px;
     justify-content: center;
 
 }
