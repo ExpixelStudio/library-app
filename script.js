@@ -56,7 +56,7 @@ newBookBtn.addEventListener('click', function(e){
     
 });
 
-let library = [new Book("Tower At The End", "Xfiles the Magnative", 627, "read") , new Book("Mansion of Mystery", "Xfiles the Magnative", 239, "unread") ];
+let library = [new Book("Tower At The End", "Xfiles the Magnative", 627, "read") , new Book("Mansion of Mystery", "Choas Teller", 239, "unread") ];
 
 /* const newBook = Object.create(Book); */
 
@@ -75,6 +75,12 @@ function addBookToLibrary() {
    let read = document.getElementById('read').checked;
 
    let newBook = new Book(title,author,pages,read);
+   
+   let search = library.find((book)=> book.uid() === newBook.uid());
+   
+   if(search){
+        dialog
+   } else 
    library.push(newBook);
    /* console.log(newBook);
    console.log(library); */
@@ -103,7 +109,8 @@ function renderBooks() {
        
         return `
             <div class="book">
-                <h3>${title}</h3>
+                <i class="bi bi-x-lg" onclick =deleteBook('${id}')></i>
+                <h2 class='title'>${title}</h2>
                 <p>By: ${author}</p>
                 <p>No. Of Pages: ${pages}</p>
                 <p>Already Read?: ${read}</p>

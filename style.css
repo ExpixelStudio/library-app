@@ -1,3 +1,7 @@
+:root{
+    --vertical-spacing:2.5%;
+}
+
 * {
     box-sizing: border-box;
     /* margin: 0;
@@ -18,13 +22,27 @@ h1{
     justify-content: center;
     align-items: center;
     height:12vh;
-    margin-bottom: 5%;
+    margin-bottom: var(--vertical-spacing);
     background-color: #2a2438;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 #header h1{
     color:white;
+    
+}
+
+.new-btn{
+    /* display: flex; */
+    text-align: center;
+    margin-bottom: var(--vertical-spacing);
+}
+
+#new-book-btn{
+    padding:15px;
+    width:180px;
+    font-weight: 700;
+    font-size: 1.1em;
 }
 
 #book-shelf {
@@ -40,6 +58,30 @@ h1{
     border: 1px solid darkcyan;
     height: 350px;
     width: 250px;
+   text-align: center;
+}
+
+#book-shelf .book i.bi-x-lg{
+    padding: 6px 6px 0 0;
+    font-weight: 800;
+    text-align: right;
+    /* border: 1px solid firebrick; */
+    max-height:20px;
+    
+    
+}
+
+
+
+#book-shelf .book i.bi-x-lg:hover{
+    transition: 4ms ease;
+    font-size: 23px;
+    color: darkred;
+}
+
+#book-shelf .book .title {
+    /* padding-left:0;
+    text-align: center; */
 }
 
 #form-modal{
@@ -49,4 +91,20 @@ h1{
     top: 50%;
     transform: translate(-50%, -50%);
          */
+    padding:30px;
+}
+
+#new-book-form{
+    display:flex;
+    flex-direction: column;
+    
+    
+}
+
+#new-book-form input{
+    font-size: 1.1rem;
+    padding:6px;
+    margin-bottom: 25px;
+    /* border: none; */
+    outline: none;
 }
